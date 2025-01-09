@@ -1,12 +1,12 @@
 interface IRegisterBody {
-  fullName: string;
-  userName: string;
+  full_name: string;
+  username: string;
   email: string;
   password: string;
 }
 
 interface ILoginBody {
-  email: string;
+  login: string;
   password: string;
 }
 

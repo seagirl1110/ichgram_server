@@ -1,13 +1,19 @@
 import { Document, Types } from 'mongoose';
 
 interface IUser extends Document {
-  fullName: string;
-  userName: string;
+  full_name: string;
+  username: string;
   email: string;
   password: string;
+  bio: string;
+  image: string;
+  posts_count: number;
+  followers_count: number;
+  following_count: number;
   posts: Types.ObjectId[];
   followers: Types.ObjectId[];
   following: Types.ObjectId[];
+  created_at: Date;
 }
 
 export default IUser;

@@ -10,29 +10,30 @@ const register = async (
   res: Response<IApiResponse>
 ): Promise<void> => {
   try {
-    const { fullName, userName, email, password } = req.body;
+    const { full_name, username, email, password } = req.body;
 
-    if (!fullName || !userName || !email || !password) {
+    if (!full_name || !username || !email || !password) {
       res.status(400).json({ message: 'All field are required' });
       return;
     }
 
-    const user = await User.findOne({
-      $or: [{ userName }, { email }],
+    const existingUser = await User.findOne({
+      $or: [{ username }, { email }],
     });
 
-    if (user) {
-      res
-        .status(400)
-        .json({ message: 'User exists, userName and email must be unique' });
+    if (existingUser) {
+      res.status(400).json({
+        message:
+          'User with such username or email is already has been register',
+      });
       return;
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = new User({
-      fullName,
-      userName,
+      full_name,
+      username,
       email,
       password: hashedPassword,
     });
@@ -41,7 +42,7 @@ const register = async (
 
     res.status(201).json({ message: 'User register successfully' });
   } catch (error) {
-    res.status(500).json({ message: `Internal server error: ${error}` });
+    res.status(500).json({ message: `Registration error: ${error}` });
   }
 };
 
@@ -50,14 +51,16 @@ const login = async (
   res: Response<IApiResponse>
 ): Promise<void> => {
   try {
-    const { email, password } = req.body;
+    const { login, password } = req.body;
 
-    if (!email || !password) {
+    if (!login || !password) {
       res.status(400).json({ message: 'All field are required' });
       return;
     }
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({
+      $or: [{ username: login }, { email: login }],
+    });
 
     if (!user) {
       res.status(401).json({ message: 'Invalid credentials' });
