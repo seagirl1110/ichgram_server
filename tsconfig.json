@@ -5,12 +5,20 @@
         "module": "CommonJS",
         "strict": true,
         "rootDir": "./src",
-        "outDir": "./dist"
+        "outDir": "./dist",
+        "typeRoots": [
+            "./node_modules/@types",
+            "./src/types"
+        ]
     },
     "include": [
-        "src/**/*"
+        "src/**/*",
+        "src/types/express.d.ts"
     ],
     "exclude": [
         "node_modules"
+    ],
+    "files": [
+        "src/types/express.d.ts"
     ]
 }

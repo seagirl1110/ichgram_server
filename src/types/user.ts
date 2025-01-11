@@ -16,4 +16,13 @@ interface IUser extends Document {
   created_at: Date;
 }
 
+export interface IUpdateProfileBody {
+  username?: string;
+  bio?: string;
+}
+
+export interface IGetProfileParams {
+  userId: string;
+}
+
 export default IUser;
