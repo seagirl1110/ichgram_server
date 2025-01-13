@@ -5,6 +5,7 @@ import connectDB from './config/db';
 import authRoutes from './routes/auth';
 import userRoutes from './routes/user';
 import postRoutes from './routes/post';
+import searchRoutes from './routes/search';
 
 const app = express();
 app.use(cors());
@@ -18,6 +19,7 @@ const port = process.env.PORT || '3333';
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 app.use('/post', postRoutes);
+app.use('/search', searchRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on http://127.0.0.1:${port}`);
