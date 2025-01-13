@@ -11,4 +11,10 @@ interface IPost extends Document {
   created_at: Date;
 }
 
+export interface ICreatePostBody {
+  description: string;
+  // TODO
+  // image: string;
+}
+
 export default IPost;
