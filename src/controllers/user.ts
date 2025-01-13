@@ -35,10 +35,14 @@ const updateUserProfile = async (
       return;
     }
 
-    const { username, bio } = req.body;
+    const { username, bio, website } = req.body;
 
     if (bio) {
       user.bio = bio;
+    }
+
+    if (website) {
+      user.website = website;
     }
 
     if (username) {

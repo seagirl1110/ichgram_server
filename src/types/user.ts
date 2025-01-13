@@ -6,6 +6,7 @@ interface IUser extends Document {
   email: string;
   password: string;
   bio: string;
+  website: string;
   image: string;
   posts_count: number;
   followers_count: number;
@@ -19,6 +20,7 @@ interface IUser extends Document {
 export interface IUpdateProfileBody {
   username?: string;
   bio?: string;
+  website?: string;
 }
 
 export interface IGetProfileParams {

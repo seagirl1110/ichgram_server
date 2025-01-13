@@ -39,8 +39,9 @@
 
 ```bash
 {
-  "bio"?: "string",
   "username"?: "string",
+  "bio"?: "string",
+  "website": "string"
 }
 ```
 
