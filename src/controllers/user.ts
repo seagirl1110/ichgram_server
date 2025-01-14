@@ -10,7 +10,9 @@ const getUserProfile = async (
   const userId = req.params.userId;
 
   try {
-    const user = await User.findById(userId).select(['-password']);
+    const user = await User.findById(userId)
+      .select(['-password'])
+      .populate('posts');
 
     if (!user) {
       res.status(404).json({ message: 'User is not found' });

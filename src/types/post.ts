@@ -14,7 +14,16 @@ interface IPost extends Document {
 export interface ICreatePostBody {
   description: string;
   // TODO
-  // image: string;
+  // images: string[];
+}
+
+export interface IUpdatePostBody {
+  description?: string;
+  images?: string[];
+}
+
+export interface IPostParams {
+  [key: string]: string;
 }
 
 export default IPost;
