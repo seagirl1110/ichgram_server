@@ -2,16 +2,24 @@
 
 ### Примеры API маршрутов
 
+#### /auth
+
 - Регистрация пользователя: POST http://127.0.0.1:3333/auth/register
 - Вход в личный кабинет: POST http://127.0.0.1:3333/auth/login
 
+#### /user
+
 - Получение данных пользователя: GET http://127.0.0.1:3333/user/:userId
 - Обновление данных пользователя: PUT http://127.0.0.1:3333/user/update
+
+#### /post
 
 - Создание поста: POST http://127.0.0.1:3333/post/
 - Получение поста: GET http://127.0.0.1:3333/post/:postId
 - Обновление поста: PUT http://127.0.0.1:3333/post/:postId
 - Удаление поста: DELETE http://127.0.0.1:3333/post/:postId
+
+#### /search
 
 - Поиск пользователей: GET http://127.0.0.1:3333/search/users?query=
 - Поиск постов: GET http://127.0.0.1:3333/search/posts?query=
