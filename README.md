@@ -9,6 +9,9 @@
 - Обновление данных пользователя: PUT http://127.0.0.1:3333/user/update
 
 - Создание поста: POST http://127.0.0.1:3333/post/
+- Получение поста: GET http://127.0.0.1:3333/post/:postId
+- Обновление поста: PUT http://127.0.0.1:3333/post/:postId
+- Удаление поста: DELETE http://127.0.0.1:3333/post/:postId
 
 - Поиск пользователей: GET http://127.0.0.1:3333/search/users?query=
 - Поиск постов: GET http://127.0.0.1:3333/search/posts?query=
@@ -50,5 +53,14 @@
 ```bash
 {
     "description": "string"
+}
+```
+
+#### Обновление поста
+
+```bash
+{
+    "description"?: "string"
+    "images"?: "string"[]
 }
 ```
