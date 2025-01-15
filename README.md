@@ -19,6 +19,11 @@
 - Обновление поста: PUT http://127.0.0.1:3333/post/:postId
 - Удаление поста: DELETE http://127.0.0.1:3333/post/:postId
 
+#### /comment
+
+- Создание комментария: POST http://127.0.0.1:3333/comment/:postId
+- Удаление комментария: DELETE http://127.0.0.1:3333/comment/:commentId
+
 #### /search
 
 - Поиск пользователей: GET http://127.0.0.1:3333/search/users?query=
@@ -70,5 +75,13 @@
 {
     "description"?: "string"
     "images"?: "string"[]
+}
+```
+
+#### Создание комментария
+
+```bash
+{
+    "text": "string"
 }
 ```
