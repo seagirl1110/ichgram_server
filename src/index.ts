@@ -6,6 +6,7 @@ import authRoutes from './routes/auth';
 import userRoutes from './routes/user';
 import postRoutes from './routes/post';
 import searchRoutes from './routes/search';
+import commentRoutes from './routes/comment';
 
 const app = express();
 app.use(cors());
@@ -20,6 +21,7 @@ app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 app.use('/post', postRoutes);
 app.use('/search', searchRoutes);
+app.use('/comment', commentRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on http://127.0.0.1:${port}`);

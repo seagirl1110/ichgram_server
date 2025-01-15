@@ -12,4 +12,12 @@ interface IComment extends Document {
   created_at: Date;
 }
 
+export interface ICreateCommentBody {
+  text: string;
+}
+
+export interface ICommentParams {
+  [key: string]: string;
+}
+
 export default IComment;

@@ -47,10 +47,9 @@ const getPost = async (
   const { postId } = req.params;
 
   try {
-    const post = await Post.findById(postId).populate(
-      'user_id',
-      'username image'
-    );
+    const post = await Post.findById(postId)
+      .populate('user_id', 'username image')
+      .populate('comments');
 
     if (!post) {
       res.status(404).json({ message: 'Post not found' });
