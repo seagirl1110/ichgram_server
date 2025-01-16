@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import { IGetProfileParams, IUpdateProfileBody } from '../types/user';
+import { IUpdateProfileBody } from '../types/user';
 import { IApiResponse } from '../types/common';
 import User from '../models/User';
 
 const getUserProfile = async (
-  req: Request<IGetProfileParams>,
+  req: Request,
   res: Response<IApiResponse>
 ): Promise<void> => {
   const userId = req.params.userId;

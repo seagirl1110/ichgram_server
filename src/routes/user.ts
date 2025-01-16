@@ -4,7 +4,7 @@ import authMiddleware from '../middlewares/authMiddleware';
 
 const router: Router = Router();
 
-router.get('/:userId', getUserProfile);
+router.get('/:userId', authMiddleware, getUserProfile);
 router.put('/update', authMiddleware, updateUserProfile);
 
 export default router;

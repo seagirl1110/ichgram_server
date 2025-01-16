@@ -23,8 +23,4 @@ export interface IUpdateProfileBody {
   website?: string;
 }
 
-export interface IGetProfileParams {
-  userId: string;
-}
-
 export default IUser;
