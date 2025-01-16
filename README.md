@@ -24,6 +24,11 @@
 - Создание комментария: POST http://127.0.0.1:3333/comment/:postId
 - Удаление комментария: DELETE http://127.0.0.1:3333/comment/:commentId
 
+#### /like
+
+- Лайк поста: POST http://127.0.0.1:3333/like/:postId/like
+- Удаление лайка поста: POST http://127.0.0.1:3333/like/:postId/unlike
+
 #### /search
 
 - Поиск пользователей: GET http://127.0.0.1:3333/search/users?query=

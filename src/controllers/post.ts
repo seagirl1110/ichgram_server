@@ -49,7 +49,8 @@ const getPost = async (
   try {
     const post = await Post.findById(postId)
       .populate('user_id', 'username image')
-      .populate('comments');
+      .populate('comments')
+      .populate('likes');
 
     if (!post) {
       res.status(404).json({ message: 'Post not found' });
