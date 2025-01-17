@@ -8,6 +8,7 @@ import postRoutes from './routes/post';
 import searchRoutes from './routes/search';
 import commentRoutes from './routes/comment';
 import LikeRoutes from './routes/like';
+import FollowRoutes from './routes/follow';
 
 const app = express();
 app.use(cors());
@@ -24,6 +25,7 @@ app.use('/post', postRoutes);
 app.use('/search', searchRoutes);
 app.use('/comment', commentRoutes);
 app.use('/like', LikeRoutes);
+app.use('/follow', FollowRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on http://127.0.0.1:${port}`);

@@ -34,6 +34,13 @@
 - Поиск пользователей: GET http://127.0.0.1:3333/search/users?query=
 - Поиск постов: GET http://127.0.0.1:3333/search/posts?query=
 
+#### /follow
+
+- Поиск подписчиков пользователя: GET http://127.0.0.1:3333/follow/:userId/followers
+- Поиск подписок пользователя: GET http://127.0.0.1:3333/follow/:userId/following
+- Подписаться на пользователя: POST http://127.0.0.1:3333/follow/follow/:targetUserId
+- Отписаться от пользователя: DELETE http://127.0.0.1:3333/follow/unfollow/:targetUserId
+
 ### Ожидаемые данные
 
 #### Регистрация пользователя
