@@ -52,7 +52,13 @@ const getPost = async (
   try {
     const post = await Post.findById(postId)
       .populate('user_id', 'username image')
-      .populate('comments')
+      .populate({
+        path: 'comments',
+        populate: {
+          path: 'user_id',
+          select: 'username image',
+        },
+      })
       .populate('likes');
 
     if (!post) {
