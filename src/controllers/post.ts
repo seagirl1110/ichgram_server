@@ -22,7 +22,7 @@ const createPost = async (
 
     const post = new Post({
       user_id: userId,
-      images: [`data:image/jpeg:base64,${base64Img}`],
+      images: [`data:image/jpeg;base64,${base64Img}`],
       description,
     });
 

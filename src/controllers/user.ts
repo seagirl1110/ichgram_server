@@ -63,7 +63,7 @@ const updateUserProfile = async (
 
     if (req.file) {
       const base64Img = req.file.buffer.toString('base64');
-      user.image = base64Img;
+      user.image = `data:image/jpeg;base64,${base64Img}`;
     }
 
     await user.save();
