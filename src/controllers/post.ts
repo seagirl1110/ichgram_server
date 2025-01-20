@@ -3,6 +3,7 @@ import { ICreatePostBody, IUpdatePostBody, IPostParams } from '../types/post';
 import { IApiResponse } from '../types/common';
 import User from '../models/User';
 import Post from '../models/Post';
+import upload from '../middlewares/multer';
 
 const createPost = async (
   req: Request<{}, {}, ICreatePostBody>,
@@ -12,15 +13,22 @@ const createPost = async (
   const userId = req.user._id;
 
   try {
+    if (!req.file) {
+      res.status(400).json({ message: 'Image is required' });
+      return;
+    }
+
+    const base64Img = req.file.buffer.toString('base64');
+
     const post = new Post({
       user_id: userId,
-      images: ['test_file'],
+      images: [`data:image/jpeg:base64,${base64Img}`],
       description,
     });
 
     await post.save();
 
-    const user = await User.findByIdAndUpdate(
+    await User.findByIdAndUpdate(
       userId,
       {
         $push: { posts: post._id },
@@ -28,11 +36,6 @@ const createPost = async (
       },
       { new: true }
     );
-
-    if (!user) {
-      res.status(404).json({ message: 'User not found' });
-      return;
-    }
 
     res.status(201).json({ message: 'Post created successfully', data: post });
   } catch (error) {
@@ -68,7 +71,7 @@ const updatePost = async (
   res: Response<IApiResponse>
 ): Promise<void> => {
   const { postId } = req.params;
-  const { description, images } = req.body;
+  const { description } = req.body;
   const userId = req.user._id;
 
   try {
@@ -86,10 +89,6 @@ const updatePost = async (
 
     if (description) {
       post.description = description;
-    }
-
-    if (images) {
-      post.images = images;
     }
 
     await post.save();
@@ -138,5 +137,7 @@ const deletePost = async (
     res.status(500).json({ message: `Error deleting post: ${error}` });
   }
 };
+
+export const uploadPostImg = upload.single('images');
 
 export { createPost, getPost, updatePost, deletePost };

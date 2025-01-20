@@ -69,7 +69,7 @@
 {
   "username"?: "string",
   "bio"?: "string",
-  "website?": "string"
+  "website"?: "string"
 }
 ```
 
@@ -86,7 +86,6 @@
 ```bash
 {
     "description"?: "string"
-    "images"?: "string"[]
 }
 ```
 

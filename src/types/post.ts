@@ -13,13 +13,10 @@ interface IPost extends Document {
 
 export interface ICreatePostBody {
   description: string;
-  // TODO
-  // images: string[];
 }
 
 export interface IUpdatePostBody {
   description?: string;
-  images?: string[];
 }
 
 export interface IPostParams {

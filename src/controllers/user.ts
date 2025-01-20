@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { IUpdateProfileBody } from '../types/user';
 import { IApiResponse } from '../types/common';
 import User from '../models/User';
+import upload from '../middlewares/multer';
 
 const getUserProfile = async (
   req: Request,
@@ -60,6 +61,11 @@ const updateUserProfile = async (
       user.username = username;
     }
 
+    if (req.file) {
+      const base64Img = req.file.buffer.toString('base64');
+      user.image = base64Img;
+    }
+
     await user.save();
 
     res.status(200).json({ message: 'Update profile is successfully' });
@@ -67,5 +73,7 @@ const updateUserProfile = async (
     res.status(500).json({ message: `Error updating profile: ${error}` });
   }
 };
+
+export const uploadProfileImg = upload.single('image');
 
 export { getUserProfile, updateUserProfile };
