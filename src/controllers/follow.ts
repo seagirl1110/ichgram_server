@@ -70,7 +70,7 @@ const followUser = async (
 
     const existingFollow = await Follow.findOne({
       follower_user_id: userId,
-      followed_user_id: targetUser,
+      followed_user_id: targetUserId,
     });
 
     if (existingFollow) {
