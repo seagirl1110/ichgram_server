@@ -11,16 +11,13 @@ const searchUsers = async (
   const { query } = req.query;
 
   try {
-    const users = await User.find({
-      username: { $regex: query, $options: 'i' },
-    }).select(['_id', 'username', 'image']);
+    const users = query
+      ? await User.find({
+          username: { $regex: query, $options: 'i' },
+        }).select(['_id', 'username', 'image'])
+      : [];
 
-    if (users.length === 0) {
-      res.status(404).json({ message: 'No users found matching this request' });
-      return;
-    }
-
-    res.status(200).json({ message: 'Users found', data: users });
+    res.status(200).json({ message: 'Users', data: users });
   } catch (error) {
     res.status(500).json({ message: `Error searching users: ${error}` });
   }
