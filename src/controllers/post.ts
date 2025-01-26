@@ -144,6 +144,30 @@ const deletePost = async (
   }
 };
 
+const getAllPosts = async (
+  req: Request,
+  res: Response<IApiResponse>
+): Promise<void> => {
+  const userId = req.user._id;
+
+  try {
+    const posts = await Post.find({ user_id: { $ne: userId } })
+      .populate('user_id', 'username image')
+      .populate({
+        path: 'comments',
+        populate: {
+          path: 'user_id',
+          select: 'username image',
+        },
+      })
+      .populate('likes');
+
+    res.status(200).json({ message: 'Posts', data: posts });
+  } catch (error) {
+    res.status(500).json({ message: `Error getting posts: ${error}` });
+  }
+};
+
 export const uploadPostImg = upload.single('images');
 
-export { createPost, getPost, updatePost, deletePost };
+export { createPost, getPost, updatePost, deletePost, getAllPosts };
